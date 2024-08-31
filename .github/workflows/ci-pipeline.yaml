@@ -27,6 +27,7 @@ jobs:
           source DOCKER_VARS
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "DOCKER_REPO=$DOCKER_REPO" >> $GITHUB_ENV
+          echo "Using DOCKER_REPO=${{ env.DOCKER_REPO }}" # Log the extracted repository
 
       - name: Build and push
         uses: docker/build-push-action@v6
