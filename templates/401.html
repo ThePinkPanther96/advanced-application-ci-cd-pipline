@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unauthorized Access</title>
+    <style>
+        body {
+            background: #ff4b2b;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            animation: float 3s ease-in-out infinite;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 6rem;
+            margin: 0;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin: 10px 0 20px;
+        }
+
+        .lock {
+            font-size: 3rem;
+            animation: blink 1s infinite;
+        }
+
+        a {
+            color: #ffdf00;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 2px solid #ffdf00;
+            transition: color 0.3s, border-bottom 0.3s;
+        }
+
+        a:hover {
+            color: #fff;
+            border-bottom: 2px solid #fff;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(-10px); }
+            50% { transform: translateY(10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lock">🔒</div>
+        <h1>401</h1>
+        <p>Unauthorized Access. You don't have permission to view this page.</p>
+        <a href="/five_days" class="back-home">Back to Home</a>
+    </div>
+</body>
+</html>

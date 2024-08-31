@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Five Days Weather Forecast</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('../static/icons/four_sesson.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        #container {
+            width: 80%;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        input[type="text"], button {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+        }
+        .error {
+            color: #FF0000;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Five Days Weather Forecast</h1>
+        <form method="POST">
+            <input type="text" name="city" placeholder="Enter a city" required>
+            <button type="submit">Get Forecast</button>
+        </form>
+
+        {% if weather_data %}
+            {% if weather_data.error %}
+                <p class="error">{{ weather_data.error }}</p>
+            {% else %}
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Temperature (°C)</th>
+                        <th>Description</th>
+                        <th>Humidity</th>
+                    </tr>
+                    {% for item in weather_data.list %}
+                        <tr>
+                            <td>{{ item.dt_txt }}</td>
+                            <td>{{ item.main.temp }}°C</td>
+                            <td>{{ item.weather[0].description }}</td>
+                            <td>{{ item.main.humidity }}%</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
