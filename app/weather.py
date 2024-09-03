@@ -1,11 +1,13 @@
 from flask import Flask, render_template, request, abort
 import requests
+import os
 
 app = Flask(__name__)
 
-API_KEY = "928f5558bf5292980c1a784ae19c1ab7"
-BASE_URL = "https://api.openweathermap.org/data/2.5/forecast"
 
+API_KEY = os.environ.get('API_KEY')
+BASE_URL = os.environ.get('BASE_URL')
+ 
 
 @app.errorhandler(404)
 def not_found(error): 
