@@ -13,6 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Load version and repo variables
+        id: vars
+        run: |
+          source DOCKER_VARS
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "DOCKER_REPO=$DOCKER_REPO" >> $GITHUB_ENV
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
@@ -22,24 +29,9 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Check if Docker Hub repository exists
-        id: check_repo
-        run: |
-          REPO_NAME="${{ secrets.DOCKERHUB_USERNAME }}/advanced-application-ci-cd-pipline"
-          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -u "${{ secrets.DOCKERHUB_USERNAME }}:${{ secrets.DOCKERHUB_TOKEN }}" https://hub.docker.com/v2/repositories/${{ secrets.DOCKERHUB_USERNAME }}/advanced-application-ci-cd-pipline/)
-          if [ "$RESPONSE" -eq 404 ]; then
-            echo "Repository does not exist. Creating it now."
-            curl -s -X POST https://hub.docker.com/v2/repositories/ \
-              -u "${{ secrets.DOCKERHUB_USERNAME }}:${{ secrets.DOCKERHUB_TOKEN }}" \
-              -H "Content-Type: application/json" \
-              -d '{"namespace": "'${{ secrets.DOCKERHUB_USERNAME }}'", "name": "advanced-application-ci-cd-pipline", "is_private": false}'
-          else
-            echo "Repository already exists."
-          fi
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/advanced-application-ci-cd-pipline:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_REPO }}:${{ env.VERSION }}
