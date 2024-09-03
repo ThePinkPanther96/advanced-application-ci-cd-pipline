@@ -6,7 +6,7 @@ on:
       - main  # Trigger the workflow on push to the main branch
 
 jobs:
-  Prepare-env-and-load-vars:
+  load-vars:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.vars.outputs.version }}
@@ -22,7 +22,7 @@ jobs:
           echo "::set-output name=version::$VERSION"
           echo "::set-output name=repo::$DOCKER_REPO"
 
-  conneting-to-Dockerhub:
+  login:
     runs-on: ubuntu-latest
     needs: load-vars
     steps:
