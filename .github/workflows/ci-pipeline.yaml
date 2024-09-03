@@ -1,25 +1,40 @@
-name: ci-pipeline
+name: Build and Push Docker Image
 
-on: push
+on:
+  push:
+    branches:
+      - main  # Change this to the branch you want to trigger on
+
 jobs:
-  push_to_registry:
-    name: push docker image to hub
+  build-and-push:
     runs-on: ubuntu-latest
+
     steps:
-      - name: check repository
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: set environment variables
-        run: echo "DOCKER_REPO=your-dockerhub-repo" >> $GITHUB_ENV
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
 
-      - name: login to docker registry
-        uses: docker/login-action@v3
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: build and push docker image to registry
-        uses: docker/build-push-action@v5
-        with:
-          push: true
-          tags: ${{ env.DOCKER_REPO }}:${{ env.VERSION }}
+      - name: Extract Docker variables
+        id: vars
+        run: |
+          source DOCKER_VARS
+          echo "VERSION=${VERSION}"
+          echo "DOCKER_REPO=${DOCKER_REPO}"
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV
+          echo "DOCKER_REPO=${DOCKER_REPO}" >> $GITHUB_ENV
+
+      - name: Build Docker image
+        run: |
+          docker build -t $DOCKER_REPO:$VERSION .
+
+      - name: Push Docker image
+        run: |
+          docker push $DOCKER_REPO:$VERSION
