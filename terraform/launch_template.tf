@@ -1,23 +1,26 @@
 provider "aws" {
-  region = "us-west-2"
+  region = "eu-central-1"
 }
 
-resource "aws_launch_template" "foo" {
-  name = "foo"
+data "aws_subnet" "example_subnet" {
+  id = "subnet-0272110df0f4edc49"
+}
 
-  vpc_security_group_ids = ["sg-12345678"]
+resource "aws_launch_template" "asg_template" {
+  name = "asg_template"
+
+  vpc_security_group_ids = ["sg-013d218ef198ff5dd", "sg-05fdb8cfd574907c5"]
   
-  image_id = "ami-test"
-  
-  ebs_optimized = true
+  image_id = "ami-0e04bcbe83a83792e"
   
   instance_initiated_shutdown_behavior = "terminate"
   
   instance_type = "t2.micro"
   
-  key_name = "test"
-  
+  key_name = "demo-alb"
 
+  update_default_version = true
+  
   block_device_mappings {
     device_name = "/dev/sdf"
 
@@ -43,17 +46,15 @@ resource "aws_launch_template" "foo" {
     associate_public_ip_address = true
   }
 
-  placement {
-    availability_zone = "us-west-2a"
-  }
-
-  ram_disk_id = "test"
+  #placement {
+  #   availability_zone = "eu-central-1a"
+  # }
 
   tag_specifications {
     resource_type = "instance"
 
     tags = {
-      Name = "test"
+      Name = "test-template"
     }
   }
 
