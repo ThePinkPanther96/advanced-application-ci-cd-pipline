@@ -1,2 +1,2 @@
-VERSION=2.0.0
+VERSION=latest
 DOCKER_REPO=advanced-application-ci-cd-pipline

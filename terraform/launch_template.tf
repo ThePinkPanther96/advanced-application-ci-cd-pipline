@@ -17,7 +17,7 @@ resource "aws_launch_template" "asg_template" {
   
   instance_type = "t2.micro"
   
-  key_name = "demo-alb"
+  key_name = "frankfurt-pem"
 
   update_default_version = true
   
