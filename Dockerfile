@@ -4,13 +4,13 @@ MAINTAINER Gal
 
 WORKDIR /app
 
-ARG UBILD_NUMBER
+ARG BUILD_NUMBER
 
 ENV ENVIRONMENT=DEV
 
 COPY app/requirements.txt ./
 
-RUN echo ${UBILD_NUMBER} && pip install --no-cache-dir -r requirements.txt
+RUN echo ${BUILD_NUMBER} && pip install --no-cache-dir -r requirements.txt
 
 COPY app /app
 
