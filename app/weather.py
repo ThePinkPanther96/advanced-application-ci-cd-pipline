@@ -4,7 +4,6 @@ import os
 
 app = Flask(__name__)
 
-
 API_KEY = os.environ.get('API_KEY')
 BASE_URL = os.environ.get('BASE_URL')
  
@@ -43,4 +42,4 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001, debug=False) # Switch to True for debugging
+    app.run(host='0.0.0.0', port=5001, debug=False) #Switch to True for debugging
