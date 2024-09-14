@@ -39,4 +39,4 @@ jobs:
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_REPO }}:latest
           build-args: |
             API_KEY=${{ secrets.API_KEY }}
-            BASE_URLY=${{ secrets.BASE_URL }}
+            BASE_URL=${{ secrets.BASE_URL }}
