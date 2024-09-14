@@ -4,16 +4,22 @@ MAINTAINER Gal
 
 WORKDIR /app
 
+COPY app /app
+
+COPY app/requirements.txt ./
+
+RUN pip install --upgrade pip
+
+RUN echo ${BUILD_NUMBER} && pip install --no-cache-dir -r requirements.txt
+
+EXPOSE 5001
+
 ARG BUILD_NUMBER
 
 ENV ENVIRONMENT=DEV
 
-COPY app/requirements.txt ./
+ENV API_KEY=${API_KEY}
 
-RUN echo ${BUILD_NUMBER} && pip install --no-cache-dir -r requirements.txt
-
-COPY app /app
-
-EXPOSE 5001
+ENV BASE_URL=${BASE_URL}
 
 ENTRYPOINT ["python", "weather.py"]
