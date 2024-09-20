@@ -1,1 +1,3 @@
 1. fix - template.tf created additional volume instead of kepping the existing volume
+2. variables file
+3. alb

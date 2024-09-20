@@ -44,6 +44,7 @@ resource "aws_launch_template" "asg_template" {
 
   network_interfaces {
     associate_public_ip_address = true
+    subnet_id                   = data.aws_subnet.example_subnet.id
   }
 
   #placement {
