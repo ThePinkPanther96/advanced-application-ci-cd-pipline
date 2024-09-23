@@ -1,23 +1,23 @@
 provider "aws" {
-  region = "eu-central-1"
+  region = var.aws_region
 }
 
 data "aws_subnet" "example_subnet" {
-  id = "subnet-0272110df0f4edc49"
+  id = var.subnet_id
 }
 
 resource "aws_launch_template" "asg_template" {
-  name = "asg_template"
+  name = var.launch_template_name
 
-  vpc_security_group_ids = ["sg-013d218ef198ff5dd", "sg-05fdb8cfd574907c5"]
+  vpc_security_group_ids = var.launch_template_security_group_ids
   
-  image_id = "ami-0e04bcbe83a83792e"
+  image_id = var.ami_id
   
   instance_initiated_shutdown_behavior = "terminate"
   
   instance_type = "t2.micro"
   
-  key_name = "frankfurt-pem"
+  key_name = var.key_name
 
   update_default_version = true
   
@@ -47,10 +47,6 @@ resource "aws_launch_template" "asg_template" {
     subnet_id                   = data.aws_subnet.example_subnet.id
   }
 
-  #placement {
-  #   availability_zone = "eu-central-1a"
-  # }
-
   tag_specifications {
     resource_type = "instance"
 
@@ -59,5 +55,5 @@ resource "aws_launch_template" "asg_template" {
     }
   }
 
-  user_data = filebase64("${path.module}/example.sh")
+  user_data = filebase64("${path.module}/user_data.sh")
 }
