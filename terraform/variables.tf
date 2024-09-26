@@ -19,19 +19,6 @@ variable "alb_public_subnet_ids" {
   default     = ["subnet-0272110df0f4edc49", "subnet-012e5706c23f128d1"] 
 }
 
-# Security Group IDs
-variable "launch_template_security_group_ids" {
-  description = "List of security group IDs to be attached to instances"
-  type        = list(string)
-  default     = ["sg-013d218ef198ff5dd", "sg-05fdb8cfd574907c5"]
-}
-
-variable "alb_security_group_ids" {
-  description = "List of security group IDs to be attached to a load balancer"
-  type        = list(string)
-  default     = ["sg-05ab7b301e7ef9133"]
-}
-
 # AMI ID
 variable "ami_id" {
   description = "AMI ID for the instance"
@@ -58,6 +45,26 @@ variable "certificate_arn" {
   description = "ARN of the SSL certificate for the HTTPS listener"
   type        = string
   default     = "arn:aws:acm:eu-central-1:021891580761:certificate/b2ecec70-c917-429b-b7a0-a8cae01fdca7"
+}
+
+# SSL policy type
+variable "ssl_policy" {
+  description = "SSL Certificate ssl policy type"
+  type        = string
+  default     = "ELBSecurityPolicy-TLS13-1-2-2021-06"
+}
+
+# Security Group IDs
+variable "launch_template_security_group_ids" {
+  description = "List of security group IDs to be attached to instances"
+  type        = list(string)
+  default     = ["sg-013d218ef198ff5dd", "sg-05fdb8cfd574907c5"]
+}
+
+variable "alb_security_group_ids" {
+  description = "List of security group IDs to be attached to a load balancer"
+  type        = list(string)
+  default     = ["sg-05ab7b301e7ef9133"]
 }
 
 # Names
