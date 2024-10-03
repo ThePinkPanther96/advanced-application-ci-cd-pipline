@@ -73,6 +73,7 @@ variable "launch_template_name" {
   type        = string
   default     = "test-tf-launch_template"
 }
+
 variable "alb_name" {
   description = "Name of the Application Load Balancer"
   type        = string
