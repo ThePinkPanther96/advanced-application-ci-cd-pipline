@@ -74,6 +74,11 @@ variable "launch_template_name" {
   default     = "test-tf-launch_template"
 }
 
+variable "target_group_arn" {
+  description = "ARN of the Target Group"
+  type        = string
+}
+
 variable "alb_name" {
   description = "Name of the Application Load Balancer"
   type        = string
