@@ -11,7 +11,6 @@ resource "aws_lb" "app_lb" {
     Environment = "production"
   }
 }
-sdf
 
 # HTTPS Listener
 resource "aws_lb_listener" "app_lb_listener_HTTPS" {

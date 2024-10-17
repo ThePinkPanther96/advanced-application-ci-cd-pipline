@@ -16,7 +16,7 @@ variable "subnet_id" {
 variable "alb_public_subnet_ids" {
   description = "List of public subnet IDs for the ALB"
   type        = list(string)
-  default     = ["subnet-0272110df0f4edc49", "subnet-012e5706c23f128d1"] 
+  default     = ["subnet-0272110df0f4edc49"] 
 }
 
 # AMI ID
@@ -72,11 +72,6 @@ variable "launch_template_name" {
   description = "Name of the Launch Template"
   type        = string
   default     = "test-tf-launch_template"
-}
-
-variable "target_group_arn" {
-  description = "ARN of the Target Group"
-  type        = string
 }
 
 variable "alb_name" {
