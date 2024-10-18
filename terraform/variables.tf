@@ -16,7 +16,7 @@ variable "subnet_id" {
 variable "alb_public_subnet_ids" {
   description = "List of public subnet IDs for the ALB"
   type        = list(string)
-  default     = ["subnet-0272110df0f4edc49"] 
+  default     = ["subnet-0272110df0f4edc49","subnet-012e5706c23f128d1"]
 }
 
 # AMI ID
@@ -85,4 +85,3 @@ variable "target_group_name" {
   type        = string
   default     = "tf-test-lb-tg"
 }
-

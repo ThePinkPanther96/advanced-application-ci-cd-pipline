@@ -1,4 +1,4 @@
-resource "aws_autoscaling_group" "bar" {
+resource "aws_autoscaling_group" "asg" {
   availability_zones = ["eu-central-1b"]
   desired_capacity   = 1
   max_size           = 2

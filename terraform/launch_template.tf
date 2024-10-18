@@ -9,18 +9,16 @@ data "aws_subnet" "example_subnet" {
 resource "aws_launch_template" "asg_template" {
   name = var.launch_template_name
 
-  vpc_security_group_ids = var.launch_template_security_group_ids
-  
   image_id = var.ami_id
-  
+
   instance_initiated_shutdown_behavior = "terminate"
-  
+
   instance_type = "t2.micro"
-  
+
   key_name = var.key_name
 
   update_default_version = true
-  
+
   block_device_mappings {
     device_name = "/dev/sdf"
 
@@ -44,7 +42,8 @@ resource "aws_launch_template" "asg_template" {
 
   network_interfaces {
     associate_public_ip_address = true
-    subnet_id                   = data.aws_subnet.example_subnet.id
+    subnet_id = data.aws_subnet.example_subnet.id
+    security_groups = var.launch_template_security_group_ids
   }
 
   tag_specifications {
