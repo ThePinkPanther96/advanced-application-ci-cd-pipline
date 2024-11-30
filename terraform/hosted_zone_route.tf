@@ -1,3 +1,7 @@
+resource "aws_route53_zone" "myZone" {
+  name = "gal-rozman.com"
+}
+
 resource "aws_route53_record" "myRecord" {
   zone_id = aws_route53_zone.myZone.zone_id
   name    = "weather"
