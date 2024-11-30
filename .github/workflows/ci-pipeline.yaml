@@ -1,17 +1,26 @@
 name: Docker Image CI/CD Pipeline
 
 on:
-  push:
-    branches:
-      - main  # Trigger the workflow on push to the main branch
+  workflow_run:
+    workflows: ["Run Pytest"]
+    types:
+      - completed
+
+permissions:
+  contents: read
+  id-token: write
+  actions: read
 
 jobs:
   build-and-push:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.workflow_run.head_branch }}
 
       - name: Load version and repo variables
         id: vars
