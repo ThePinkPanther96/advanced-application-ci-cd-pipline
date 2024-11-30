@@ -17,7 +17,6 @@ variable "vpc_id" {
   default     = "vpc-01726edb057271e76"
 }
 
-
 # SSL CERTIFICATE
 variable "certificate_arn" {
   description = "ARN of the SSL certificate for the HTTPS listener"
@@ -84,7 +83,7 @@ variable "alb_name" {
 variable "target_group_name" {
   description = "Name for the Target Group"
   type        = string
-  default     = "tf-test-lb-tg"
+  default     = "tf-test-lb-tg2"
 }
 
 variable "target_group_health_check_path" {
