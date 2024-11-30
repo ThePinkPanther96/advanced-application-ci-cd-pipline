@@ -70,7 +70,7 @@ variable "alb_public_subnet_ids" {
 variable "alb_security_group_ids" {
   description = "List of security group IDs to be attached to a load balancer"
   type        = list(string)
-  default     = ["sg-05ab7b301e7ef9133 "]
+  default     = ["sg-05ab7b301e7ef9133"]
 }
 
 variable "alb_name" {
@@ -90,7 +90,7 @@ variable "target_group_name" {
 variable "target_group_health_check_path" {
   description = "Target group health check path"
   type        = string
-  default     = "/five-days"
+  default     = "/"
 }
 
 variable "target_group_listener_port" {
