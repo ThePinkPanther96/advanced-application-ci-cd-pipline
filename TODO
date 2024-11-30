@@ -2,5 +2,4 @@
 3. Image(?)
 4. tf backup s3
 5. cd-pipeline
-6. pytest
-7. Create Security Group
+6. Create Security Group
