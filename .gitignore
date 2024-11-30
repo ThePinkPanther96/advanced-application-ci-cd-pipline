@@ -6,8 +6,6 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-hosted_zone_route.tf
-
 # C extensions
 *.so
 
