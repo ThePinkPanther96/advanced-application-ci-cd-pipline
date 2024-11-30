@@ -11,7 +11,7 @@ resource "aws_autoscaling_group" "asg" {
 
   target_group_arns = [aws_lb_target_group.app_tg.arn]
 
-  health_check_type         = "ELB"
+  health_check_type         = "ALB" #ELB
   health_check_grace_period = 300
 
   tag {

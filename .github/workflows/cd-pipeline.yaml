@@ -2,7 +2,7 @@ name: Terraform CD Pipeline
 
 on:
   workflow_run:
-    workflows: ["Docker Image CI/CD Pipeline"]
+    workflows: ["Docker Image CI Pipeline"]
     types:
       - completed
 
