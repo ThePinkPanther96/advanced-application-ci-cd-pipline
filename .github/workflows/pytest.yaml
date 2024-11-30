@@ -37,3 +37,4 @@ jobs:
           API_KEY: ${{ env.API_KEY }}
           BASE_URL: ${{ env.BASE_URL }}
         run: pytest
+        
